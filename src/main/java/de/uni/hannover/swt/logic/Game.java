@@ -17,8 +17,8 @@ public class Game {
         _turn = Player.OPLAYER;
     }
 
-    public Board getState() {
-        return _board;
+    public EnumMarks[][] getState() {
+        return _board.getFields();
     }
 
     public void setPoint(int x, int y) {
@@ -29,7 +29,7 @@ public class Game {
         _turn = _turn == Player.OPLAYER ? Player.XPLAYER : Player.OPLAYER;
     }
 
-    public Player getRound() {
+    public Player getPlayer() {
         return _turn;
     }
 
