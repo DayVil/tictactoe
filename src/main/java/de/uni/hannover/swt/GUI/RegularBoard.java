@@ -22,6 +22,7 @@ public class RegularBoard extends JPanel {
 
     /**
      * Creats a new View which displays the Board which shows the current "game".
+     *
      * @param game The game to view.
      */
     public RegularBoard(Board game) {
@@ -52,7 +53,7 @@ public class RegularBoard extends JPanel {
         for (byte r = 0; r < GAME_ROWS; r++) {
             for (byte c = 0; c < GAME_COLS; c++) {
                 if (game.getFields()[r][c] != EnumMarks.EMPTY) {
-                    g.drawImage(selectImage(game.getFields()[r][c]), r*UNIT, c*UNIT, null);
+                    g.drawImage(selectImage(game.getFields()[r][c]), r * UNIT, c * UNIT, null);
                 }
             }
         }
@@ -67,6 +68,7 @@ public class RegularBoard extends JPanel {
 
     /**
      * Displays the game which is given.
+     *
      * @param game The Board, which should display the game.
      */
     public void setBoard(Board game) {
@@ -84,6 +86,6 @@ public class RegularBoard extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(GAME_COLS*UNIT, GAME_ROWS*UNIT);
+        return new Dimension(GAME_COLS * UNIT, GAME_ROWS * UNIT);
     }
 }
