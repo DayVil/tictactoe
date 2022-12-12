@@ -14,6 +14,17 @@ public class Board {
         _width = width;
         _height = height;
         _fields = new EnumMarks[width][height];
+
+        init(); //TODO Yann bitte anpassen nach deinen Wünschen :)
+    }
+
+    //TODO Yann bitte anpassen nach deinen Wünschen :)
+    private void init() {
+        for (byte r = 0; r < _width; r++) {
+            for (byte c = 0; c < _height; c++) {
+                _fields[r][c] = EnumMarks.EMPTY;
+            }
+        }
     }
 
     public EnumMarks[][] getFields() {
