@@ -1,6 +1,8 @@
 package de.uni.hannover.swt.GUI;
 
 import de.uni.hannover.swt.logic.Board;
+import de.uni.hannover.swt.logic.Game;
+import de.uni.hannover.swt.logic.IGame;
 import de.uni.hannover.swt.logic.enums.EnumMarks;
 
 import javax.imageio.ImageIO;
@@ -11,27 +13,16 @@ import java.io.IOException;
 
 public class RegularBoard extends JPanel {
 
-    private Board game;
+    private Game currentGame;
     private BufferedImage board, redX, blueCircle;
-    private final int UNIT = 170;
+    protected final int UNIT = 170;
     private final int GAME_ROWS = 3, GAME_COLS = 3;
 
-    public RegularBoard() {
-
-    }
-
     /**
-     * Creats a new View which displays the Board which shows the current "game".
-     *
-     * @param game The game to view.
+     * Creats a new View which displays the Board which shows a new "Game".
      */
-    public RegularBoard(Board game) {
-        setGame(game);
-        loadImages();
-    }
-
-    public void setGame(Board game) {
-        this.game = game;
+    public RegularBoard() {
+        currentGame = new Game(GAME_ROWS, GAME_COLS);
         loadImages();
     }
 
@@ -52,8 +43,8 @@ public class RegularBoard extends JPanel {
 
         for (byte r = 0; r < GAME_ROWS; r++) {
             for (byte c = 0; c < GAME_COLS; c++) {
-                if (game.getFields()[r][c] != EnumMarks.EMPTY) {
-                    g.drawImage(selectImage(game.getFields()[r][c]), r * UNIT, c * UNIT, null);
+                if (currentGame.getState()[r][c] != EnumMarks.EMPTY) {
+                    g.drawImage(selectImage(currentGame.getState()[r][c]), r * UNIT, c * UNIT, null);
                 }
             }
         }
@@ -66,26 +57,17 @@ public class RegularBoard extends JPanel {
         return redX;
     }
 
-    /**
-     * Displays the game which is given.
-     *
-     * @param game The Board, which should display the game.
-     */
-    public void setBoard(Board game) {
-        this.game = game;
-    }
-
-    /**
-     * Call this Methode to update the View.
-     * TODO not working
-     * use setBoard
-     */
-    public void update() {
-        this.game = game;
-    }
-
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(GAME_COLS * UNIT, GAME_ROWS * UNIT);
+    }
+
+    protected Game getCurrentGame() {
+        return currentGame;
+    }
+
+    protected void setCurrentGame(Game newGame) {
+        currentGame = newGame;
+        repaint();
     }
 }
