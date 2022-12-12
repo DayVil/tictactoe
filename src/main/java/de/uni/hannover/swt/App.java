@@ -2,15 +2,12 @@ package de.uni.hannover.swt;
 
 import de.uni.hannover.swt.GUI.RegularBoard;
 import de.uni.hannover.swt.GUI.RegularControl;
-import de.uni.hannover.swt.logic.Board;
 import de.uni.hannover.swt.logic.Game;
-import de.uni.hannover.swt.logic.enums.EnumMarks;
 
 import javax.swing.*;
 
 public class App extends RegularControl {
-    public static final int WIDTH = 3;
-    public static final int HEIGHT = 3;
+    public static final int MATRIX_SIZE = 3;
 
     public App(RegularBoard b) {
         super(b);
@@ -20,7 +17,7 @@ public class App extends RegularControl {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        Game game = new Game(WIDTH, HEIGHT);
+        Game game = new Game();
         game.setPoint(0, 0);
         game.setPoint(0, 1);
         game.setPoint(0, 2);

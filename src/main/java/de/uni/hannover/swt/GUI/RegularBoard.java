@@ -23,7 +23,7 @@ public class RegularBoard extends JPanel {
      * Creats a new View which displays the Board which shows a new "Game".
      */
     public RegularBoard() {
-        currentGame = new Game(GAME_ROWS, GAME_COLS);
+        currentGame = new Game();
         loadImages();
     }
 
@@ -50,7 +50,7 @@ public class RegularBoard extends JPanel {
             }
         }
 
-        if (currentGame.hasWon()) {
+        if (currentGame.hasWon().won()) {
             try {
                 if (currentGame.getPlayer() == Player.OPLAYER) {
                     check = ImageIO.read(getClass().getClassLoader().getResourceAsStream("orangeCircle.png"));
