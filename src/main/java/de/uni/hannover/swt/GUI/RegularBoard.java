@@ -43,8 +43,8 @@ public class RegularBoard extends JPanel {
 
         for (byte r = 0; r < GAME_ROWS; r++) {
             for (byte c = 0; c < GAME_COLS; c++) {
-                if (currentGame.getState()[r][c] != EnumMarks.EMPTY) {
-                    g.drawImage(selectImage(currentGame.getState()[r][c]), r * UNIT, c * UNIT, null);
+                if (currentGame.getState()[c][r] != EnumMarks.EMPTY) {
+                    g.drawImage(selectImage(currentGame.getState()[c][r]), r * UNIT, c * UNIT, null);
                 }
             }
         }

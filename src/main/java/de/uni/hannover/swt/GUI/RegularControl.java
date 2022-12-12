@@ -29,7 +29,7 @@ public class RegularControl extends JPanel {
 
     public void whenMousePressed(int c, int r) {
         Game game = board.getCurrentGame();
-        game.setPoint(c, r);
+        game.setPoint(r, c);
         board.setCurrentGame(game);
         System.out.println(board.getCurrentGame().toString());
     }

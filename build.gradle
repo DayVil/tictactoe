@@ -2,11 +2,6 @@ plugins {
     id 'java'
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(18)
-    }
-}
 
 group 'de.uni.hannover.swt'
 version '1.0-SNAPSHOT'
