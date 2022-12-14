@@ -1,7 +1,8 @@
 package de.uni.hannover.swt.logic;
 
-import de.uni.hannover.logic.enums.Player;
-import de.uni.hannover.logic.enums.EnumMarks;
+
+import de.uni.hannover.swt.logic.enums.EnumMarks;
+import de.uni.hannover.swt.logic.enums.Player;
 
 public interface IGame {
 	Player getPlayer();
