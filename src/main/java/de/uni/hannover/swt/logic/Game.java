@@ -1,9 +1,5 @@
 package de.uni.hannover.swt.logic;
 
-import de.uni.hannover.swt.App;
-import de.uni.hannover.swt.logic.enums.EnumMarks;
-import de.uni.hannover.swt.logic.enums.Player;
-
 import java.util.Arrays;
 
 import static de.uni.hannover.swt.App.MATRIX_SIZE;

@@ -1,10 +1,6 @@
 package de.uni.hannover.swt.GUI;
 
-import de.uni.hannover.swt.logic.Board;
 import de.uni.hannover.swt.logic.Game;
-import de.uni.hannover.swt.logic.IGame;
-import de.uni.hannover.swt.logic.enums.EnumMarks;
-import de.uni.hannover.swt.logic.enums.Player;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
