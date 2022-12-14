@@ -42,13 +42,25 @@ public class Game {
         /* horizontal check */
         for (int i = 0; i < MATRIX_SIZE; i++) {
             var distinctArr = Arrays.stream(tmpField[i]).distinct();
-            if (distinctArr.count() == 1) {
+            if (distinctArr.count() == 1 && tmpField[i][0] != EnumMarks.EMPTY) {
                 var mark = tmpField[i][0];
                 Board tmpBoard = new Board();
                 for (int place = 0; place < MATRIX_SIZE; place++)
-                    tmpBoard.setField(place, 0, mark);
+                    tmpBoard.setField(i, place, mark);
+                System.out.println("WINNER:-----------:\n" + tmpBoard);
                 return new WinInfo(true, this.correspondingPlayer(mark), tmpBoard.getFields());
             }
+        }
+
+        /* vertical check */
+        for (int i = 0; i < MATRIX_SIZE; i++) {
+            EnumMarks[] checkArr = new EnumMarks[MATRIX_SIZE];
+            for (int j = 0; j < MATRIX_SIZE; j++) checkArr[j] = tmpField[i][j];
+
+            var distinctArr = Arrays.stream(checkArr).distinct();
+//            if (distinctArr.count() == 1 && tmpField[i][0] != EnumMarks.EMPTY) {
+//
+//            }
         }
 
         return new WinInfo(false, Player.NONE, null);
