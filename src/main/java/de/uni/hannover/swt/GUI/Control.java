@@ -1,6 +1,6 @@
 package de.uni.hannover.swt.GUI;
 
-import de.uni.hannover.swt.logic.Game;
+import de.uni.hannover.swt.logic.IGame;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -28,7 +28,7 @@ public class Control extends JPanel {
     }
 
     public void whenMousePressed(int c, int r) {
-        Game game = board.getCurrentGame();
+        IGame game = board.getCurrentGame();
         game.setPoint(r, c);
         board.setCurrentGame(game);
     }

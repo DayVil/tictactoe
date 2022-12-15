@@ -7,11 +7,10 @@ import java.util.Arrays;
 
 import static de.uni.hannover.swt.App.MATRIX_SIZE;
 
-public class Game {
+public class Game implements IGame {
     private final Board _board;
     private Player _turn;
 
-    private WinInfo _won;
 
     public Game() {
         _board = new Board();

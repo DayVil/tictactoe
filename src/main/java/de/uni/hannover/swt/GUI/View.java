@@ -2,6 +2,7 @@ package de.uni.hannover.swt.GUI;
 
 import de.uni.hannover.swt.logic.Game;
 
+import de.uni.hannover.swt.logic.IGame;
 import de.uni.hannover.swt.logic.enums.EnumMarks;
 import de.uni.hannover.swt.logic.enums.Player;
 
@@ -15,7 +16,7 @@ import static de.uni.hannover.swt.App.MATRIX_SIZE;
 
 public class View extends JPanel {
 
-    private Game currentGame;
+    private IGame currentGame;
     private BufferedImage board, redX, blueCircle, check;
     protected final int UNIT = 170;
 
@@ -79,11 +80,11 @@ public class View extends JPanel {
         return new Dimension(MATRIX_SIZE * UNIT, MATRIX_SIZE * UNIT);
     }
 
-    protected Game getCurrentGame() {
+    protected IGame getCurrentGame() {
         return currentGame;
     }
 
-    protected void setCurrentGame(Game newGame) {
+    protected void setCurrentGame(IGame newGame) {
         currentGame = newGame;
         repaint();
     }
