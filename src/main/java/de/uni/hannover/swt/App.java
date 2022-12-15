@@ -1,15 +1,15 @@
 package de.uni.hannover.swt;
 
-import de.uni.hannover.swt.GUI.RegularBoard;
-import de.uni.hannover.swt.GUI.RegularControl;
+import de.uni.hannover.swt.GUI.View;
+import de.uni.hannover.swt.GUI.Control;
 import de.uni.hannover.swt.logic.Game;
 
 import javax.swing.*;
 
-public class App extends RegularControl {
+public class App extends Control {
     public static final int MATRIX_SIZE = 3;
 
-    public App(RegularBoard b) {
+    public App(View b) {
         super(b);
         System.out.println("testttt.");
     }
@@ -28,8 +28,8 @@ public class App extends RegularControl {
         System.out.println(game);
 
 
-        RegularBoard board = new RegularBoard();
-        RegularControl control = new RegularControl(board);
+        View board = new View();
+        Control control = new Control(board);
 
         JFrame f = new JFrame("Tic Tac Toe");
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

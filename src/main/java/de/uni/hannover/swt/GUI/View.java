@@ -11,17 +11,18 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class RegularBoard extends JPanel {
+import static de.uni.hannover.swt.App.MATRIX_SIZE;
+
+public class View extends JPanel {
 
     private Game currentGame;
     private BufferedImage board, redX, blueCircle, check;
     protected final int UNIT = 170;
-    private final int GAME_ROWS = 3, GAME_COLS = 3;
 
     /**
      * Creats a new View which displays the Board which shows a new "Game".
      */
-    public RegularBoard() {
+    public View() {
         currentGame = new Game();
         loadImages();
     }
@@ -41,8 +42,8 @@ public class RegularBoard extends JPanel {
         super.paintComponent(g);
         g.drawImage(board, 0, 0, null);
 
-        for (byte r = 0; r < GAME_ROWS; r++) {
-            for (byte c = 0; c < GAME_COLS; c++) {
+        for (byte r = 0; r < MATRIX_SIZE; r++) {
+            for (byte c = 0; c < MATRIX_SIZE; c++) {
                 if (currentGame.getState()[c][r] != EnumMarks.EMPTY) {
                     g.drawImage(selectImage(currentGame.getState()[c][r]), r * UNIT, c * UNIT, null);
                 }
@@ -51,17 +52,17 @@ public class RegularBoard extends JPanel {
 
         if (currentGame.hasWon().won()) {
             try {
-                if (currentGame.getPlayer() == Player.OPLAYER) {
-                    check = ImageIO.read(getClass().getClassLoader().getResourceAsStream("orangeCircle.png"));
-                } else {
+                if (currentGame.hasWon().player() == Player.OPLAYER) {
                     check = ImageIO.read(getClass().getClassLoader().getResourceAsStream("check.png"));
+                } else {
+                    check = ImageIO.read(getClass().getClassLoader().getResourceAsStream("orangeCircle.png"));
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            for (byte r = 0; r < GAME_ROWS; r++) {
-                for (byte c = 0; c < GAME_COLS; c++) {
-                    if (currentGame.getState()[c][r] != EnumMarks.EMPTY) {
+            for (byte r = 0; r < MATRIX_SIZE; r++) {
+                for (byte c = 0; c < MATRIX_SIZE; c++) {
+                    if (currentGame.hasWon().winningField()[c][r] != EnumMarks.EMPTY) {
                         g.drawImage(check, r * UNIT, c * UNIT, null);
                     }
                 }
@@ -75,7 +76,7 @@ public class RegularBoard extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(GAME_COLS * UNIT, GAME_ROWS * UNIT);
+        return new Dimension(MATRIX_SIZE * UNIT, MATRIX_SIZE * UNIT);
     }
 
     protected Game getCurrentGame() {

@@ -6,11 +6,11 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class RegularControl extends JPanel {
+public class Control extends JPanel {
 
-    private RegularBoard board;
+    private final View board;
 
-    public RegularControl(RegularBoard b) {
+    public Control(View b) {
         board = b;
 
         JPanel panel = new JPanel();
@@ -31,6 +31,5 @@ public class RegularControl extends JPanel {
         Game game = board.getCurrentGame();
         game.setPoint(r, c);
         board.setCurrentGame(game);
-        System.out.println(board.getCurrentGame().toString());
     }
 }
