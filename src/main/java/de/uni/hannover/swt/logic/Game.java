@@ -8,7 +8,7 @@ import java.util.Arrays;
 import static de.uni.hannover.swt.App.MATRIX_SIZE;
 
 public class Game implements IGame {
-    private final Board _board;
+    private Board _board;
     private Player _turn;
 
 
@@ -28,6 +28,12 @@ public class Game implements IGame {
 
         _turn = _turn == Player.OPLAYER ? Player.XPLAYER : Player.OPLAYER;
 //        winCheck();
+    }
+
+    @Override
+    public void resetGame() {
+        _board = new Board();
+        _turn = Player.OPLAYER;
     }
 
     public Player getPlayer() {

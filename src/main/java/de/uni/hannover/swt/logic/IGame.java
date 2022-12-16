@@ -8,5 +8,6 @@ public interface IGame {
 	Player getPlayer();
 	EnumMarks[][] getState();
 	void setPoint(int x, int y);
+	void resetGame();
 	WinInfo hasWon();
 }
