@@ -5,6 +5,13 @@ import de.uni.hannover.swt.logic.enums.EnumMarks;
 
 import static de.uni.hannover.swt.App.MATRIX_SIZE;
 
+/*
+The board class is responsible for managing the information about the grid and the players entries into the grid.
+The constructor creates a NxN Matrix which represents the grid of the tictactoe game and
+fills it with the "Empty" Enum Mark. The Class allows to set single entries with the xy coordinates and the wanted
+content in form of enum marks or get the current entries of the whole grid in form of an 2-dimensional array of enum marks
+ */
+
 public class Board {
     private final EnumMarks[][] _fields;
 
