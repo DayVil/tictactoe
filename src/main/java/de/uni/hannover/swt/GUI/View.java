@@ -20,14 +20,12 @@ public class View extends JPanel {
     private BufferedImage gridImage, redX, blueCircle, check;
     protected final int UNIT = 170;
 
-
     /**
      * Creates a new View which displays the Board which shows a new "Game".
      */
     public View() {
         currentGame = new Game();
         loadImages();
-
     }
 
     private void loadImages() {
