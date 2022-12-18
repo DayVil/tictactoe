@@ -26,6 +26,7 @@ public class Game implements IGame {
 
     @Override
     public void setPoint(int x, int y) {
+        if (_won.won()) return;
         EnumMarks toPlace = _turn == Player.OPLAYER ? EnumMarks.OMARK : EnumMarks.XMARK;
         boolean success = _board.setField(x, y, toPlace);
         if (!success) return;
