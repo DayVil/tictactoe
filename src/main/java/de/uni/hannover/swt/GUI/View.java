@@ -18,7 +18,7 @@ public class View extends JPanel {
 
     private IGame currentGame;
     private BufferedImage gridImage, redX, blueCircle, check;
-    protected final int UNIT = 170;
+    protected final int POS_SCALING_FACTOR = 170;
 
     /**
      * Creates a new View which displays the Board which shows a new "Game".
@@ -46,7 +46,7 @@ public class View extends JPanel {
         for (byte r = 0; r < MATRIX_SIZE; r++) {
             for (byte c = 0; c < MATRIX_SIZE; c++) {
                 if (currentGame.getState()[c][r] != EnumMarks.EMPTY) {
-                    g.drawImage(selectImage(currentGame.getState()[c][r]), r * UNIT, c * UNIT, null);
+                    g.drawImage(selectImage(currentGame.getState()[c][r]), r * POS_SCALING_FACTOR, c * POS_SCALING_FACTOR, null);
                 }
             }
         }
@@ -64,7 +64,7 @@ public class View extends JPanel {
             for (byte r = 0; r < MATRIX_SIZE; r++) {
                 for (byte c = 0; c < MATRIX_SIZE; c++) {
                     if (currentGame.hasWon().winningField()[c][r] != EnumMarks.EMPTY) {
-                        g.drawImage(check, r * UNIT, c * UNIT, null);
+                        g.drawImage(check, r * POS_SCALING_FACTOR, c * POS_SCALING_FACTOR, null);
                     }
                 }
             }
@@ -77,7 +77,7 @@ public class View extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(MATRIX_SIZE * UNIT, MATRIX_SIZE * UNIT);
+        return new Dimension(MATRIX_SIZE * POS_SCALING_FACTOR, MATRIX_SIZE * POS_SCALING_FACTOR);
     }
 
     protected IGame getCurrentGame() {
