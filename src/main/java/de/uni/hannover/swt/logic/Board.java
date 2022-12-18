@@ -25,7 +25,6 @@ public class Board {
         }
     }
 
-
     public EnumMarks[][] getFields() {
         return _fields;
     }
@@ -37,26 +36,6 @@ public class Board {
         _fields[x][y] = mark;
         return true;
     }
-
-//    public EnumMarks[] getDiag(int diag) {
-//        EnumMarks[] tmp = new EnumMarks[3];
-//
-//        tmp[0] = diag == 0 ? _fields[0][0] : _fields[0][2];
-//        tmp[1] = _fields[1][1];
-//        tmp[2] = diag == 0 ? _fields[2][2] : _fields[2][0];
-//
-//        return tmp;
-//    }
-//
-//    public EnumMarks[] getRow(int rowNum) {
-//        return _fields[rowNum];
-//    }
-//
-//    public EnumMarks[] getCol(int colNum) {
-//        EnumMarks[] col = new EnumMarks[App.MATRIX_SIZE];
-//        System.arraycopy(_fields[colNum], 0, col, 0, App.MATRIX_SIZE);
-//        return col;
-//    }
 
     @Override
     public String toString() {
