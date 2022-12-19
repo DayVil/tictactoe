@@ -7,23 +7,50 @@ import java.util.Arrays;
 
 import static de.uni.hannover.swt.App.MATRIX_SIZE;
 
+/**
+ * This is the Brain of the entire Logic. It controls and manages the entire game flow and calculates which player is
+ * playing, which players are active and if the game was won or not. Also, the state of the board is controlled here.
+ */
 public class Game implements IGame {
-    private Board _board;
-    private Player _turn;
+    /* The default sate if no one won */
     private final WinInfo DEFAULT_STATE = new WinInfo(false, Player.NONE, null);
+    /* The board where the game is being played on */
+    private Board _board;
+    /* Which player is currently active */
+    private Player _turn;
+    /* The state of the game */
     private WinInfo _won;
 
+    /**
+     * Initializes the game.
+     */
     public Game() {
+        this.init();
+    }
+
+    /**
+     * Initialises a game where Player O starts and the board is empty
+     */
+    private void init() {
         _board = new Board();
         _turn = Player.OPLAYER;
         _won = DEFAULT_STATE;
     }
 
+    /**
+     * @return Gets the state of the Board.
+     */
     @Override
     public EnumMarks[][] getState() {
         return _board.getFields();
     }
 
+    /**
+     * Trys to set the mark of the currently acting player to the given position.
+     *
+     * @param x The given row
+     * @param y The given column
+     */
     @Override
     public void setPoint(int x, int y) {
         if (_won.won()) return;
@@ -35,22 +62,42 @@ public class Game implements IGame {
         _won = winCheck();
     }
 
+    /**
+     * Resets the game to the starting state. Meaning every slot is EMPTY and player O is the active player.
+     */
     @Override
     public void resetGame() {
-        _board = new Board();
-        _turn = Player.OPLAYER;
-        _won = DEFAULT_STATE;
+        this.init();
     }
 
+    /**
+     * Gets the currently acting player.
+     *
+     * @return Gets the currently acting player.
+     */
     @Override
     public Player getPlayer() {
         return _turn;
     }
 
+    /**
+     * Converts the mark to the corresponding player.
+     * OMARK => OPLAYER
+     * XMARK => XPLYER
+     *
+     * @param mark Mark to be converted
+     * @return Returns the Player to the mark
+     */
     private Player correspondingPlayer(EnumMarks mark) {
-        return mark == EnumMarks.OMARK ? Player.OPLAYER: Player.XPLAYER;
+        return mark == EnumMarks.OMARK ? Player.OPLAYER : Player.XPLAYER;
     }
 
+    /**
+     * Checks the rows of the board for a winning state.
+     *
+     * @param tmpField a copy of the currently playing field
+     * @return Returns if the game has won via WinInfo.
+     */
     private WinInfo horizontalWinCheck(EnumMarks[][] tmpField) {
         for (int i = 0; i < MATRIX_SIZE; i++) {
             var distinctArr = Arrays.stream(tmpField[i]).distinct();
@@ -66,6 +113,12 @@ public class Game implements IGame {
         return DEFAULT_STATE;
     }
 
+    /**
+     * Checks the columns of the board for a winning state.
+     *
+     * @param tmpField a copy of the currently playing field
+     * @return Returns if the game has won via WinInfo.
+     */
     private WinInfo verticalWinCheck(EnumMarks[][] tmpField) {
         for (int i = 0; i < MATRIX_SIZE; i++) {
             EnumMarks[] checkArr = new EnumMarks[MATRIX_SIZE];
@@ -84,6 +137,12 @@ public class Game implements IGame {
         return DEFAULT_STATE;
     }
 
+    /**
+     * Checks the diagonals of the board for a winning state.
+     *
+     * @param tmpField a copy of the currently playing field
+     * @return Returns if the game has won via WinInfo.
+     */
     private WinInfo diagonalCheck(EnumMarks[][] tmpField) {
         var diag1 = tmpField[0][0];
         var diag2 = tmpField[0][2];
@@ -112,6 +171,11 @@ public class Game implements IGame {
         return DEFAULT_STATE;
     }
 
+    /**
+     * Checks the board for a winning state.
+     *
+     * @return Returns if the game has won via WinInfo.
+     */
     private WinInfo winCheck() {
         var tmpField = _board.getFields();
         WinInfo wonState;
@@ -130,15 +194,21 @@ public class Game implements IGame {
         return wonState;
     }
 
+    /**
+     * @return Returns if the game has won via WinInfo.
+     */
     @Override
     public WinInfo hasWon() {
         return _won;
     }
 
+    /**
+     * Creates a readable String representation of the current game.
+     *
+     * @return Returns the string representation of the game.
+     */
     @Override
     public String toString() {
-        return "Turn: " + _turn.toString() + '\n' +
-                "Has won: " + this.hasWon() + "\n" +
-                "Board:\n" + _board;
+        return "Turn: " + _turn.toString() + '\n' + "Has won: " + this.hasWon() + "\n" + "Board:\n" + _board;
     }
 }
