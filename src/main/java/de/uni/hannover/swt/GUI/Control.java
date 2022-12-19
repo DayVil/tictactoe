@@ -10,6 +10,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
+/**
+ * The Control class adds the view to a JPanel and adds a Reset Button and a JLabel that shows the current player turn
+ * It also handles the user entries (putting down marks by clicking on the user Interface
+ */
 public class Control extends JPanel {
 
     private final View gameDrawing; //Drawing of the grid and the entries into the grid
@@ -20,7 +24,10 @@ public class Control extends JPanel {
 
     private final int WINDOW_WIDTH = 550, WINDOW_HEIGHT = 600; //Preferences for window size of the game window
 
-
+    /**
+     * Creates a new Control and adds the view <code>gameDrawing</code>, a Reset Button and a player-turn-indicator to the control JPanel
+     * @param b View object to control
+     */
     public Control(View b) {
         setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT)); //Set size for the control JPanel to predefined values. Also sets size for JFrame Window, see App.java
 
@@ -45,8 +52,8 @@ public class Control extends JPanel {
         add(gamePanel); //Game Panel is added to the
 
 
-        /*
-        adds a Mouse listener which takes the coordinates of the mouse and calculates the position on the grid from them.
+        /**
+         * adds a Mouse listener which takes the coordinates of the mouse and calculates the position on the grid from them.
          */
         gameDrawing.addMouseListener(new MouseAdapter() {
             @Override
@@ -57,8 +64,8 @@ public class Control extends JPanel {
             }
         });
 
-        /*
-        adds a listener which reacts when the reset button is pressed and resets the game
+        /**
+         * adds a listener which reacts when the reset button is pressed and resets the game
          */
         resetButton.addActionListener(new ActionListener() {
             @Override
@@ -70,9 +77,12 @@ public class Control extends JPanel {
         });
     }
 
-    /*
-        When the mouse is pressed, the entry of the grid is changed from EMPTY to the Player Enum depending on whos Players turn it is
-    */
+    /**
+     * When the mouse is pressed, the entry of the grid is changed from EMPTY to the Player Enum depending on whos Players turn it is
+     *
+     * @param column column of the grid that the mouse clicked on
+     * @param row row of the grid that the mouse clicked on
+     */
     public void whenMousePressed(int column, int row) {
         IGame game = gameDrawing.getCurrentGame(); //gets the current Game
         game.setPoint(row, column); //Changes the entry in the grid at given row and column
