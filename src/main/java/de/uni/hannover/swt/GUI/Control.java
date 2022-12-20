@@ -4,8 +4,6 @@ import de.uni.hannover.swt.logic.IGame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -17,10 +15,7 @@ import java.awt.event.MouseEvent;
 public class Control extends JPanel {
 
     private final View gameDrawing; //Drawing of the grid and the entries into the grid
-    private JLabel nextPlayerLabel; //Label that shows which players turn it is
-    private JButton resetButton; //Reset button to restart the game
-    private JPanel informationPanel; //Panel for the reset button and information about the player turn
-    private JPanel gamePanel; //The big Panel that contains the whole UI and game
+    private final JLabel nextPlayerLabel; //Label that shows which players turn it is
 
     private final int WINDOW_WIDTH = 550, WINDOW_HEIGHT = 600; //Preferences for window size of the game window
 
@@ -33,17 +28,17 @@ public class Control extends JPanel {
 
         gameDrawing = b;
 
-        informationPanel = new JPanel(); //Control Panel contains reset button and nextPlayerLabel for easier layout
+        JPanel informationPanel = new JPanel(); //Control Panel contains reset button and nextPlayerLabel for easier layout
 
         nextPlayerLabel = new JLabel("nextPlayer:"); //nextPlayerLabel shows which players turn it is. Contains text which is placeholder Text, gets overwritten in next lines
         setLayout(new BorderLayout());
         informationPanel.add(nextPlayerLabel, BorderLayout.SOUTH);
         nextPlayerLabel.setText(String.valueOf(gameDrawing.getCurrentGame().getPlayer())); //Set nextPlayerLabel to the current Player of the current Game which is an attribute of the View Class
 
-        resetButton = new JButton("Reset");
+        JButton resetButton = new JButton("Reset"); //Reset button to restart the game
         informationPanel.add(resetButton, BorderLayout.NORTH);
 
-        gamePanel = new JPanel(); //Game Panel contains the whole game including control panel and the gameDrawing with the grid and the entries
+        JPanel gamePanel = new JPanel(); //Game Panel contains the whole game including control panel and the gameDrawing with the grid and the entries
 
 
         gamePanel.add(gameDrawing);
@@ -52,8 +47,8 @@ public class Control extends JPanel {
         add(gamePanel); //Game Panel is added to the
 
 
-        /**
-         * adds a Mouse listener which takes the coordinates of the mouse and calculates the position on the grid from them.
+        /*
+          adds a Mouse listener which takes the coordinates of the mouse and calculates the position on the grid from them.
          */
         gameDrawing.addMouseListener(new MouseAdapter() {
             @Override
@@ -64,16 +59,13 @@ public class Control extends JPanel {
             }
         });
 
-        /**
-         * adds a listener which reacts when the reset button is pressed and resets the game
+        /*
+          adds a listener which reacts when the reset button is pressed and resets the game
          */
-        resetButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                IGame newGame = gameDrawing.getCurrentGame(); //gets the current game
-                newGame.resetGame();    //resets the game via the resetGame() function of the IGame Interface
-                gameDrawing.setCurrentGame(newGame); //updates the gameDrawing so every entry is shown to be EMPTY again
-            }
+        resetButton.addActionListener(e -> {
+            IGame newGame = gameDrawing.getCurrentGame(); //gets the current game
+            newGame.resetGame();    //resets the game via the resetGame() function of the IGame Interface
+            gameDrawing.setCurrentGame(newGame); //updates the gameDrawing so every entry is shown to be EMPTY again
         });
     }
 

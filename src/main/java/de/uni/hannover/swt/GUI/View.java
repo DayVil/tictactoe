@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 import static de.uni.hannover.swt.App.MATRIX_SIZE;
 
@@ -21,7 +22,7 @@ import static de.uni.hannover.swt.App.MATRIX_SIZE;
 public class View extends JPanel {
 
     private IGame currentGame;
-    private BufferedImage gridImage, redX, blueCircle, check;
+    private BufferedImage gridImage, redX, blueCircle;
     protected final int POS_SCALING_FACTOR = 170; //Scaling Factor to calculate the xy coordinates of the visuals from the grid column and row
 
     /**
@@ -37,9 +38,9 @@ public class View extends JPanel {
      */
     private void loadImages() { //Import images being used for displaying grid and player X and O marks
         try {
-            gridImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gridImage.png"));
-            redX = ImageIO.read(getClass().getClassLoader().getResourceAsStream("redX.png"));
-            blueCircle = ImageIO.read(getClass().getClassLoader().getResourceAsStream("blueCircle.png"));
+            gridImage = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("gridImage.png")));
+            redX = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("redX.png")));
+            blueCircle = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("blueCircle.png")));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -70,11 +71,12 @@ public class View extends JPanel {
         }
 
         if (currentGame.hasWon().won()) { //If a Game was won, draw the additional win markers
+            BufferedImage check;
             try {
                 if (currentGame.hasWon().player() == Player.OPLAYER) {  //decide which win marker is used depending on the player who won (X or O)
-                    check = ImageIO.read(getClass().getClassLoader().getResourceAsStream("check.png"));
+                    check = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("check.png")));
                 } else {
-                    check = ImageIO.read(getClass().getClassLoader().getResourceAsStream("orangeCircle.png"));
+                    check = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("orangeCircle.png")));
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
