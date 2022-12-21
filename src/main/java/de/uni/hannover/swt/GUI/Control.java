@@ -66,6 +66,7 @@ public class Control extends JPanel {
             IGame newGame = gameDrawing.getCurrentGame(); //gets the current game
             newGame.resetGame();    //resets the game via the resetGame() function of the IGame Interface
             gameDrawing.setCurrentGame(newGame); //updates the gameDrawing so every entry is shown to be EMPTY again
+            nextPlayerLabel.setText(String.valueOf(newGame.getPlayer())); //Takes the Player of the new Turn and changes the JLabel to show the name
         });
     }
 
